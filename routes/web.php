@@ -19,7 +19,7 @@ use App\Http\Controllers\PaymentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,4 +28,8 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payments.index');
+    Route::get('/payment/create', [PaymentController::class, 'create'])->name('payments.create');
+
+
 });

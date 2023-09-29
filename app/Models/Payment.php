@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
@@ -17,5 +17,23 @@ class Payment extends Model
     public function requestInformation()
     {
         return $this->belongsTo(RequestInformation::class, 'request_information_id');
+    }
+    public static function createPayment($data)
+    {
+
+
+        try {
+            DB::beginTransaction();
+
+            $payment = new Payment();
+            $payment->fill($data);
+            $payment->save();
+            DB::commit();
+            return $payment;
+        } catch (\Exception $e) {
+ 
+            DB::rollBack();
+            return null;
+        }
     }
 }
