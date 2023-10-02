@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class RequestInformation extends Model
 {
-    use HasFactory;
-
-    protected $table = 'request_information';
     protected $fillable = [
         'organization_or_individual_name',
         'contact_person',

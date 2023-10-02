@@ -23,22 +23,13 @@ class User extends \TCG\Voyager\Models\User
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function requestInformations()
+    {
+        return $this->hasMany(RequestInformation::class);
+    }
 }
