@@ -12,5 +12,5 @@ use App\Http\Controllers\RequestInformationController;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return view('client.Home');
 });

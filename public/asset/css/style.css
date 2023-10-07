@@ -1,0 +1,617 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+:root {
+    --color-white-100: #fff;
+    --color-white-200: #e4e6e7;
+    --color-white-300: #c9cccf;
+    --color-white-400: #a1a6aa;
+    --color-white-500: #798086;
+    --color-black-100: #14191f;
+    --color-black-200: #101419;
+    --color-black-300: #0c0f13;
+    --color-black-400: #0c0f13;
+    --color-black-500: #080a0c;
+    --color-black-600: #060709;
+    --color-black-700: #040506;
+    --color-black-800: #020303;
+    --color-blue-100: #dcebfe;
+    --color-blue-200: #bedbfe;
+    --color-blue-300: #91c3fd;
+    --color-blue-400: #61a6fa;
+    --color-blue-500: #3c83f6;
+    --color-blue-600: #2463eb;
+    --color-blue-700: #1d4fd7;
+    --color-blue-800: #1e3fae;
+    --color-blue-900: #1e3b8a;
+    --shadow-small: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+h2.title-section {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    color: #363636;
+
+}
+
+body {
+    font-family: 'Barlow', sans-serif;
+    background: #131313;
+    color: #ffff;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    transition: all 0.35s ease;
+}
+.header.on-scroll {
+    background: var(--color-black-300);
+    box-shadow: var(--shadow-medium);
+}
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 1.25rem;
+    width: 100%;
+    height: 4.25rem;
+    margin: 0 auto;
+}
+.brand {
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -1px;
+    color: var(--color-white-100);
+    text-transform: uppercase;
+}
+.menu {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100% !important;
+    padding: 4rem 0 3rem;
+    overflow: hidden;
+    background-color: var(--color-black-300);
+    box-shadow: var(--shadow-medium);
+    transition: all 0.4s ease-in-out;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.menu.is-active {
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+.menu-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1.25rem;
+}
+.menu-link {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--color-white-100);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+.menu-block {
+    display: inline-block;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25;
+    user-select: none;
+    white-space: nowrap;
+    text-align: center;
+    margin-left: auto;
+    padding: 0.65rem 1.5rem;
+    border-radius: 3rem;
+    text-transform: capitalize;
+   
+    transition: all 0.3s ease-in-out;
+}
+.menu-logo {
+    display: none; /* Ẩn logo ban đầu */
+    width: 100px; /* Điều chỉnh kích thước logo theo mong muốn */
+    height: auto;
+    position: absolute;
+    top: 10px; /* Điều chỉnh vị trí dọc theo mong muốn */
+    left: 10px; /* Điều chỉnh vị trí ngang theo mong muốn */
+    z-index: 2; /* Đảm bảo nó hiển thị trước menu */
+ }
+@media only screen and (min-width: 48rem) {
+    .menu {
+        position: relative;
+        top: 0;
+        width: auto;
+        height: auto;
+        padding: 0rem;
+        margin-left: auto;
+        background: none;
+        box-shadow: none;
+   }
+    .menu-inner {
+        display: flex;
+        flex-direction: row;
+        column-gap: 2rem;
+        margin: 0 auto;
+   }
+    .menu-link {
+        text-transform: capitalize;
+   }
+    .menu-block {
+        margin-left: 2rem;
+   }
+}
+.burger {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    user-select: none;
+    order: -1;
+    z-index: 10;
+    width: 1.6rem;
+    height: 1.15rem;
+    border: none;
+    outline: none;
+    background: none;
+    visibility: visible;
+    transform: rotate(0deg);
+    transition: 0.35s ease;
+}
+@media only screen and (min-width: 48rem) {
+    .burger {
+        display: none;
+        visibility: hidden;
+   }
+}
+.burger-line {
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border: none;
+    outline: none;
+    opacity: 1;
+    border-radius: 1rem;
+    transform: rotate(0deg);
+    background-color: var(--color-white-100);
+    transition: 0.25s ease-in-out;
+}
+.burger-line:nth-child(1) {
+    top: 0px;
+}
+.burger-line:nth-child(2) {
+    top: 0.5rem;
+    width: 70%;
+}
+.burger-line:nth-child(3) {
+    top: 1rem;
+}
+.burger.is-active .burger-line:nth-child(1) {
+    top: 0.5rem;
+    transform: rotate(135deg);
+}
+.burger.is-active .burger-line:nth-child(2) {
+    opacity: 0;
+    visibility: hidden;
+}
+.burger.is-active .burger-line:nth-child(3) {
+    top: 0.5rem;
+    transform: rotate(-135deg);
+}
+
+
+
+
+
+.navbar-nav .nav-link {
+    color: #ffff;
+}
+
+.home-contact {
+    display: flex;
+    justify-content: center;
+    align-content: flex-end;
+    margin: 70px 0 30px  0;
+
+}
+
+.box-contact {
+    display: flex;
+    align-items: center;
+    text-align: justify;
+    justify-content: space-between;
+    color: #ffff;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+
+
+.contact-button {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+
+}
+
+.card-about {
+
+    border-bottom: 1px solid #D7D7D7;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 34px;
+    margin-bottom: 10px;
+}
+
+.home-about-us {
+    padding: 40px 0;
+    background: #F4F4F4;
+    display: flex;
+    align-content: center;
+    justify-self: center;
+    color: #131313;
+}
+
+.card-about>.card-about-heading {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    font-style: normal;
+}
+
+.card-about>.card-about-body {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    padding: 20px 0;
+    text-align: justify;
+
+}
+
+/* THÔNG TIN QUY HOẠCH ĐÔ THI */
+h3.title {
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 33px;
+    line-height: 46px;
+    text-align: justify;
+
+}
+
+
+.fixed-image {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    padding-bottom: 15px;
+
+}
+
+.home-service {
+    padding: 40px 0;
+}
+
+.home-service h2.title-section {
+    color: #fff;
+}
+
+.home-service figcaption h3 a {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 26px;
+    text-decoration: none;
+    color: #FFFFFF;
+    margin-top: 30px;
+}
+
+footer {
+    background: #F4F4F4;
+    color: #131313;
+}
+
+/* THÔNG TIN QUY HOẠCH ĐÔ THI */
+
+.text-desc {
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21px;
+    color: #363636;
+}
+
+.text-desc>h3 {
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #363636;
+    padding-bottom: 10px;
+}
+
+
+/* Địa chỉ: 47 Chấn Hưng, phường 6, quận Tân Bình, Tp. HCM */
+.nav-link-content {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21px;
+    color: #363636;
+
+}
+
+
+.footer-1 {
+    padding: 60px 0;
+}
+
+
+
+.box-contact>.contact-title {
+    width: 380px;
+}
+.home-material{
+    background:#131313 ;
+    color:  #F4F4F4;
+    padding-bottom: 40px;
+}
+.home-material .title-section
+{
+    
+    color:  #F4F4F4;
+}
+.home-material h3.title
+{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+   
+}
+.home-material p.description
+{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 21px;
+    color: #FFFFFF;
+    padding: 20px 0;
+    text-align: justify;
+}
+.home-material .material-box
+{
+    padding: 20px;
+}
+.form-group>.form-input{
+    margin-bottom: 18px;
+    background-color: #fff0;
+    border: unset;
+    border-bottom: 1px solid #D7D7D7;
+    border-radius: unset;
+    color: #D7D7D7;
+}
+.form-group>.form-input::placeholder {
+    color: #D7D7D7;
+}
+
+.form-group>.form-input:focus{
+    box-shadow: unset;
+}
+textarea {
+    resize: none;
+  }
+  .img-thumnail{
+    margin-top:   3rem;
+}
+
+@media (max-width: 575.98px) {
+    .box-contact
+    {
+       
+        flex-direction: column;
+    }
+    .box-contact>.contact-title {
+        width: unset;
+    }
+    .box-contact>.contact-button
+    {
+        margin-top: 20px;
+    }
+    .home-material .material-box
+    {
+        margin: 10px 0;
+    }
+    .footer-1{
+        padding: 30px 0;
+    }
+    .home-about-us.img-thumnail figure{
+        margin-bottom: 20px;
+    }
+    .img-thumnail{
+        margin-top: 2rem;   
+    }
+}
+
+
+/* Lên lịch gặp trực tiếp với các chuyên gia */
+
+
+
+
+.dropdown-menu {
+    animation: 0.5s slideup;
+  }
+  
+  @keyframes slideup {
+    from {
+      transform: translateY(10%);
+    }
+  
+    to {
+      transform: translateY(0);
+    }
+  }
+  
