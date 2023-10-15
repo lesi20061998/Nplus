@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RequestInformationController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\vnpayController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,14 @@ use App\Http\Controllers\RequestInformationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('client.Home');
+
+
+Route::get('/', [HomeController::class, 'index'])->name('payments.index');
+Route::get('/Payment-service', [PaymentController::class, 'clientStore'])->name('client-service');
+Route::post('/Payment-service', [PaymentController::class, 'clientStore'])->name('request-information.store');
+Route::post('/request-vnpay', [vnpayController::class, 'paymentVNPAYQR'])->name('request-vnpay');
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+  
 });

@@ -1,6 +1,7 @@
 <?php
 
-namespace App;
+
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,10 @@ class RequestInformation extends Model
         'contact_address_district',
         'phone_number',
         'email',
+        'CDCD',
+        'DayCDCD',
+        'NameCDCD',
+        'DirecrtCDCD',
         'address',
         'ward',
         'district',

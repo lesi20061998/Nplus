@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\User;
-use App\Models\RequestInformation;
 use Illuminate\Routing\Router;
+use App\Models\RequestInformation;
+use GuzzleHttp\Client;
 
 class PaymentController extends Controller
 {
@@ -23,8 +24,6 @@ class PaymentController extends Controller
         //    dd($payments);
         return view('admin.request_informations.index', compact('payments'));
     }
-    
-
     public function destroyAndReturn($id)
     {
             $payment = Payment::find($id);
@@ -34,5 +33,30 @@ class PaymentController extends Controller
             return redirect()->route('request_information.index')->with('success', 'Payment has been deleted.');
 
           
+    }
+    
+
+    //client
+    public function clientStore(){
+        $client = new Client();
+        $response = $client->get('https://provinces.open-api.vn/api/');
+
+        $data = json_decode($response->getBody(), true);
+       
+        return view('client.servicePayment',compact('data'));
+    }
+    public function store(Request $request)
+    {
+            // Xác thực dữ liệu form
+        $validatedData = $request->validate([
+            'organization_or_individual_name' => 'required|max:100',
+         
+        ]);
+
+        // Nếu dữ liệu hợp lệ, tạo đối tượng RequestInformation và lưu vào cơ sở dữ liệu
+        $requestInfo = RequestInformation::create($validatedData);
+
+        // Redirect hoặc hiển thị thông báo thành công
+        return redirect()->route('request-information.index')->with('success', 'Dữ liệu đã được thêm thành công.');
     }
 }
