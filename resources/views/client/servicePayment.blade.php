@@ -192,29 +192,35 @@
         </div>
         <form action="{{ route('request-vnpay') }}" id="frmCreateOrder" method="post">
                 @csrf
-                <div class="form-group">
-                    <label for="amount">Số tiền</label>
-                    <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" max="100000000" min="1" name="amount" type="number" value="10000" />
+              
+                <div class="form-group">      
+                <input type="radio" Checked="True" id="bankCode" name="bankCode" value="">
+                    <label for="bankCode">Chuyển hướng sang Cổng VNPAY chọn phương thức thanh toán</label>
                 </div>
-                <h4>Chọn phương thức thanh toán</h4>
-                <div class="form-group">
-                    <h5>Cách 1: Chuyển hướng sang Cổng VNPAY chọn phương thức thanh toán</h5>
-                    <input type="radio" Checked="True" id="bankCode" name="bankCode" value="">
-                    <label for="bankCode">Cổng thanh toán VNPAYQR</label><br>
 
-                    <h5>Cách 2: Tách phương thức tại site của đơn vị kết nối</h5>
-                    <input type="radio" id="bankCode" name="bankCode" value="VNPAYQR">
-                    <label for="bankCode">Thanh toán bằng ứng dụng hỗ trợ VNPAYQR</label><br>
 
+                <div class="form-group">      
                     <input type="radio" id="bankCode" name="bankCode" value="VNBANK">
-                    <label for="bankCode">Thanh toán qua thẻ ATM/Tài khoản nội địa</label><br>
-
-                    <input type="radio" id="bankCode" name="bankCode" value="INTCARD">
-                    <label for="bankCode">Thanh toán qua thẻ quốc tế</label><br>
-
+                    <label for="bankCode">Thanh toán qua thẻ ATM/Tài khoản nội địa</label>
                 </div>
+                <div class="form-group">
+                    <input type="radio" id="bankCode" name="bankCode" value="INTCARD">
+                    <label for="bankCode">Thanh toán qua thẻ quốc tế</label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" >Thanh toán</button>
+                </div>
+              
 
-                <button type="submit" class="btn btn-default" href>Thanh toán</button>
+
+                   
+
+
+                   
+
+               
+
+              
             </form>
     </div>
 </section>

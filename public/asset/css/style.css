@@ -171,6 +171,9 @@ h2.title-section {
     color: #363636;
 
 }
+a:hover{
+    text-decoration: none;
+}
 
 body {
     font-family: 'Barlow', sans-serif;
@@ -456,14 +459,19 @@ h3.title {
     color: #fff;
 }
 
-.home-service figcaption h3 a {
+.home-service a figcaption h3  {
     font-style: normal;
     font-weight: 600;
     font-size: 22px;
     line-height: 26px;
     text-decoration: none;
     color: #FFFFFF;
-    margin-top: 30px;
+    margin-top: 0;
+}
+.home-service a:hover figcaption h3
+{
+    color: #ffff;
+    text-decoration: none;
 }
 
 footer {
@@ -493,7 +501,7 @@ footer {
 }
 
 
-/* Địa chỉ: 47 Chấn Hưng, phường 6, quận Tân Bình, Tp. HCM */
+
 .nav-link-content {
     font-style: normal;
     font-weight: 400;
@@ -566,7 +574,9 @@ textarea {
   .img-thumnail{
     margin-top:   3rem;
 }
-
+.home-service{
+    background: url("/asset/images/bg-mask.png") no-repeat right top;
+}
 @media (max-width: 575.98px) {
     .box-contact
     {

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Routing\Router;
 
+
 class vnpayController extends Controller
 {
     public function paymentVNPAYQR()
@@ -14,13 +15,11 @@ class vnpayController extends Controller
         $vnp_TmnCode = "1ZTXEO8D";
         $vnp_HashSecret = "ZBZGTCIBGWKFPDYXJWGTOXYXVQYTKZSG";
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://localhost/vnpay_php/vnpay_return.php";
-        // $startTime = date("YmdHis");
-        // $expire = date('YmdHis',strtotime('+15 minutes',strtotime($startTime)));
-
+        $vnp_Returnurl = "http://127.0.0.1:8000/vnpay-return";
+       
 
         $vnp_TxnRef = rand(1, 10000); //Mã giao dịch thanh toán tham chiếu của merchant
-        $vnp_Amount = $_POST['amount']; // Số tiền thanh toán
+        $vnp_Amount = 200000; // Số tiền thanh toán
         $vnp_Locale = "vn"; //Ngôn ngữ chuyển hướng thanh toán
         $vnp_BankCode = $_POST['bankCode']; //Mã phương thức thanh toán
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR']; //IP Khách hàng thanh toán
@@ -34,7 +33,7 @@ class vnpayController extends Controller
             "vnp_CurrCode" => "VND",
             "vnp_IpAddr" => $vnp_IpAddr,
             "vnp_Locale" => $vnp_Locale,
-            "vnp_OrderInfo" => "Thanh toan GD:200",
+            "vnp_OrderInfo" => "Thanh toan Nplus",
             "vnp_OrderType" => "other",
             "vnp_ReturnUrl" => $vnp_Returnurl,
             "vnp_TxnRef" => $vnp_TxnRef,
@@ -63,7 +62,7 @@ class vnpayController extends Controller
         
         $vnpSecureHash =   hash_hmac('sha512', $hashdata, "ZBZGTCIBGWKFPDYXJWGTOXYXVQYTKZSG"); 
         $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
-        // dd($vnp_Url);
+       
 
       return Redirect::to($vnp_Url);
 
