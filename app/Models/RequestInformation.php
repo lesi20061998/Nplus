@@ -8,26 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class RequestInformation extends Model
 {
     protected $fillable = [
+        'id',
         'organization_or_individual_name',
         'contact_person',
-        'contact_address_street',
-        'contact_address_ward',
+        'Birthday',
+        'contact_address_city',
         'contact_address_district',
+        'contact_address_ward',
+        'contact_address_street',
+        'city',
+        'district',
+        'ward',
+        'street',
         'phone_number',
         'email',
         'CDCD',
         'DayCDCD',
         'NameCDCD',
         'DirecrtCDCD',
-        'address',
-        'ward',
-        'district',
         'sheet_number',
         'plot_number',
-        'boundary_scope',
         'area_size',
-        'coordinate_x',
-        'coordinate_y',
+        'ImageUrl',
+        // 'target_information',
+        // 'Function_information',
+        'coordinates'
     ];
 
     public function payment()

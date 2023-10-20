@@ -17,13 +17,18 @@ use App\Http\Controllers\vnpayController;
 
 Route::get('/', [HomeController::class, 'index'])->name('payments.index');
 Route::get('/Payment-service', [PaymentController::class, 'clientStore'])->name('client-service');
-Route::post('/Payment-service', [PaymentController::class, 'clientStore'])->name('request-information.store');
-Route::post('/request-vnpay', [vnpayController::class, 'paymentVNPAYQR'])->name('request-vnpay');
+
+
+Route::post('/request-vnpay', [vnpayController::class, 'store'])->name('request-vnpay');
 Route::get('/vnpay-return', function(){
-    return view('client.vnpay_return');
-});
+    return view('client.servicePayment');
+})->name('return-payment');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-  
+    Route::get('/adminpayment', [PaymentController::class, 'index'])->name('request_informations.index');
+    Route::post('/adminpayment', [vnpayController::class, 'update'])->name('request_informations.update');
+    Route::get('/adminpayment/{id}', [vnpayController::class, 'destroy'])->name('destroy');
+    Route::get('/export/{id}', [vnpayController::class, 'export'])->name('request_informations.export');
+
 });

@@ -187,11 +187,13 @@ return [
 
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
-        //'css/custom.css',
+        'asset/css/jquery.dataTables.min.css'
     ],
 
     'additional_js' => [
-        //'js/custom.js',
+   
+       'asset/js/jquery.dataTables.min.js',
+       'asset/js/configAdmin.js'
     ],
 
     'googlemaps' => [
