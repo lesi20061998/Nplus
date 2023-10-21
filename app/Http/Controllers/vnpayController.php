@@ -246,80 +246,80 @@ class vnpayController extends Controller
     {
         
         $payment = RequestInformation::find($id);
-    //     dd($payment);
-    // //     $organization_or_individual_name = $payment->organization_or_individual_name;
-    //     $contact_person = $payment->contact_person;
-    //     $Birthday = $payment->Birthday;
-    //     $contact_address_city = $payment->contact_address_city;
-    //     $contact_address_district = $payment->contact_address_district;
-    //     $contact_address_ward = $payment->contact_address_ward;
-    //     $contact_address_street = $payment->contact_address_street;
-    //     $city = $payment->city;
-    //     $district = $payment->district;
-    //     $ward = $payment->ward;
-    //     $street = $payment->street;
-    //     $phone_number = $payment->phone_number;
-    //     $email = $payment->email;
-    //     $DirecrtCDCD = $payment->DirecrtCDCD;
-    //     $sheet_number = $payment->sheet_number;
-    //     $plot_number = $payment->plot_number;
-    //     $area_size = $payment->area_size;
-    //     $coordinates = $payment->coordinates;
-    //     $ImageUrl = $payment->ImageUrl;
+       
+        $organization_or_individual_name = $payment->organization_or_individual_name;
+        $contact_person = $payment->contact_person;
+        $Birthday = $payment->Birthday;
+        $contact_address_city = $payment->contact_address_city;
+        $contact_address_district = $payment->contact_address_district;
+        $contact_address_ward = $payment->contact_address_ward;
+        $contact_address_street = $payment->contact_address_street;
+        $city = $payment->city;
+        $district = $payment->district;
+        $ward = $payment->ward;
+        $street = $payment->street;
+        $phone_number = $payment->phone_number;
+        $email = $payment->email;
+        $DirecrtCDCD = $payment->DirecrtCDCD;
+        $sheet_number = $payment->sheet_number;
+        $plot_number = $payment->plot_number;
+        $area_size = $payment->area_size;
+        $coordinates = $payment->coordinates;
+        $ImageUrl = $payment->ImageUrl;
 
-    //     // dd($coordinates);
-    //     $arr = json_decode($coordinates);
-    //     $coordinatesX1 = $arr[0]->x;
-    //     $coordinatesY1 = $arr[0]->y;
-    //     $coordinatesX2 = $arr[1]->x;
-    //     $coordinatesY2 = $arr[1]->y;
-    //     $coordinatesX3 = $arr[2]->x;
-    //     $coordinatesY3 = $arr[2]->y;
-    //     $coordinatesX4 = $arr[3]->x;
-    //     $coordinatesY4 = $arr[3]->y;
+        // dd($coordinates);
+        $arr = json_decode($coordinates);
+        $coordinatesX1 = $arr[0]->x;
+        $coordinatesY1 = $arr[0]->y;
+        $coordinatesX2 = $arr[1]->x;
+        $coordinatesY2 = $arr[1]->y;
+        $coordinatesX3 = $arr[2]->x;
+        $coordinatesY3 = $arr[2]->y;
+        $coordinatesX4 = $arr[3]->x;
+        $coordinatesY4 = $arr[3]->y;
      
      
         
-    //     //file docs
-    //     $phpWord = new \PhpOffice\PhpWord\PhpWord();
-    //     $section = $phpWord->addSection();
-    //     $templateProcessor = new TemplateProcessor('template.docx');   
+        //file docs
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection();
+        $templateProcessor = new TemplateProcessor('template.docx');   
        
-    //     $templateProcessor->setValues(
-    //     [
-    //         'organization_or_individual_name'=>$organization_or_individual_name,
-    //         'contact_person'=>$contact_person,
-    //         'Birthday'=>$Birthday,
-    //         'contact_address_city'=>$contact_address_city,
-    //         'contact_address_district'=>$contact_address_district,
-    //         'contact_address_ward'=>$contact_address_ward,
-    //         'contact_address_street'=>$contact_address_street,
-    //         'city'=>$city,
-    //         'district'=>$district,
-    //         'ward'=>$ward,
-    //         'street'=>$street,
-    //         'phone_number'=>$phone_number,
-    //         'email'=>$email,
-    //         'DirecrtCDCD'=>$DirecrtCDCD,
-    //         'sheet_number'=>$sheet_number,
-    //         'plot_number'=>$plot_number,
-    //         'area_size'=>$area_size,
-    //         'coordinatesX1'=>$coordinatesX1,
-    //         'coordinatesY1'=>$coordinatesY1,
-    //         'coordinatesX2'=>$coordinatesX2,
-    //         'coordinatesY2'=>$coordinatesY2,
-    //         'coordinatesX3'=>$coordinatesX3,
-    //         'coordinatesY3'=>$coordinatesY3,
-    //         'coordinatesX4'=>$coordinatesX4,
-    //         'coordinatesY4'=>$coordinatesY4,
+        $templateProcessor->setValues(
+        [
+            'organization_or_individual_name'=>$organization_or_individual_name,
+            'contact_person'=>$contact_person,
+            'Birthday'=>$Birthday,
+            'contact_address_city'=>$contact_address_city,
+            'contact_address_district'=>$contact_address_district,
+            'contact_address_ward'=>$contact_address_ward,
+            'contact_address_street'=>$contact_address_street,
+            'city'=>$city,
+            'district'=>$district,
+            'ward'=>$ward,
+            'street'=>$street,
+            'phone_number'=>$phone_number,
+            'email'=>$email,
+            'DirecrtCDCD'=>$DirecrtCDCD,
+            'sheet_number'=>$sheet_number,
+            'plot_number'=>$plot_number,
+            'area_size'=>$area_size,
+            'coordinatesX1'=>$coordinatesX1,
+            'coordinatesY1'=>$coordinatesY1,
+            'coordinatesX2'=>$coordinatesX2,
+            'coordinatesY2'=>$coordinatesY2,
+            'coordinatesX3'=>$coordinatesX3,
+            'coordinatesY3'=>$coordinatesY3,
+            'coordinatesX4'=>$coordinatesX4,
+            'coordinatesY4'=>$coordinatesY4,
           
-    //     ]
-    // );
-    //     $pathToSave = $organization_or_individual_name.'.docx';
-    //     $templateProcessor->saveAs($pathToSave);
-    //     $filename = basename($organization_or_individual_name.'.docx');
-    //     header('Content-Type: application/octet-stream');
-    //     header('Content-Disposition: attachment; filename="' . $filename . '"');
-    //     readfile($organization_or_individual_name.'.docx');
+        ]
+    );
+        $pathToSave = $organization_or_individual_name.'.docx';
+        $templateProcessor->saveAs($pathToSave);
+        $filename = basename($organization_or_individual_name.'.docx');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        readfile($organization_or_individual_name.'.docx');
     }
 }

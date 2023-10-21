@@ -48,17 +48,18 @@
                                         <tbody>
 
                                             @foreach ($payments as $requestInformation)
-
+                                         
                                             <tr>
                                                 <td>{{$requestInformation->access_code}}</td>
                                                 <td>{{ $requestInformation->user->name }}</td>
                                                 <td>{{ $requestInformation->order_status }}</td>
                                                 <td>{{ $requestInformation->payment_method }}</td>
+
                                                 <td>
 
                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $requestInformation->id }}" data-whatever="@mdo">Xem Thông Tin Thụ Lý</button>
                                                     <a href="{{route('request_informations.update')}}/{{$requestInformation->id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')">delete</a>
-                                                    <a href="export/{{$requestInformation->id}}" class="btn btn-primary">Xuất Ra File Word</a>
+                                                    <a href="export/{{$requestInformation->request_information_id}}" class="btn btn-primary">Xuất Ra File Word</a>
                                                 </td>
                                                 <div class="modal fade" id="exampleModal{{ $requestInformation->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{ $requestInformation->id }}" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
