@@ -75,6 +75,7 @@
         }
     });
 </script>
+
 <script src="{{ asset('asset/js/code.jquery.com_jquery-3.3.1.slim.min.js')}}">
 </script>
 <script src="{{ asset('asset/js/jsdelivr.net_npm_bootstrap@4.3.1_dist_js_bootstrap.min.js')}}">
@@ -82,6 +83,10 @@
 <script src="{{ asset('asset/js/code.jquery.com_jquery-3.3.1.slim.min.js')}}">
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
 <script>
     const host = "https://provinces.open-api.vn/api/";
 
@@ -159,10 +164,82 @@
         let result1 = city1 + " | " + district1 + " | " + ward1;
         let result2 = city2 + " | " + district2 + " | " + ward2;
 
-        
-    };
 
-    
+    };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+
+<script>
+
+
+let coordinatesXCounter = 1;
+let coordinatesYCounter = 1;
+
+
+let addCoordinatesButton = document.querySelector("#add-coordinates");
+let coordinatesElement = document.querySelector("#coordinates");
+
+addCoordinatesButton.addEventListener("click", function () {
+    // Create HTML elements for coordinates
+    const formGroupElement = document.createElement("div");
+    formGroupElement.setAttribute("class", "form-group");
+
+    const rowElement = document.createElement("div");
+    rowElement.setAttribute("class", "row");
+
+    const colXElement = document.createElement("div");
+    colXElement.setAttribute("class", "col-xs-12 col-md-12 col-lg-6 col-xl-6 pt-3 p-3");
+
+    const labelXElement = document.createElement("label");
+    labelXElement.setAttribute("for", "coordinatesX");
+    labelXElement.setAttribute("class", "mb-2");
+    labelXElement.innerText = `Vị trí Tọa độ X`+coordinatesXCounter;
+
+    const inputXElement = document.createElement("input");
+    inputXElement.setAttribute("type", "text");
+    inputXElement.setAttribute("class", "form-control");
+    inputXElement.setAttribute("name", `coordinatesX[]`);
+
+    const colYElement = document.createElement("div");
+    colYElement.setAttribute("class", "col-xs-12 col-md-12 col-lg-6 col-xl-6 pt-3 p-3");
+
+    const labelYElement = document.createElement("label");
+    labelYElement.setAttribute("for", "coordinatesY");
+    labelYElement.setAttribute("class", "mb-2");
+    labelYElement.innerText = `Vị trí Tọa độ Y`+coordinatesXCounter;
+
+    const inputYElement = document.createElement("input");
+    inputYElement.setAttribute("type", "text");
+    inputYElement.setAttribute("class", "form-control");
+    inputYElement.setAttribute("name", `coordinatesY[]`);
+
+    const removeButtonElement = document.createElement("button");
+    removeButtonElement.setAttribute("type", "button");
+    removeButtonElement.setAttribute("class", "btn btn-danger mt-3");
+    removeButtonElement.innerText = "Xóa";
+
+    // Add elements to the form
+    colXElement.appendChild(labelXElement);
+    colXElement.appendChild(inputXElement);
+    colYElement.appendChild(labelYElement);
+    colYElement.appendChild(inputYElement);
+    colYElement.appendChild(removeButtonElement);
+    rowElement.appendChild(colXElement);
+    rowElement.appendChild(colYElement);
+    formGroupElement.appendChild(rowElement);
+
+    // Add form group to the form
+    coordinatesElement.appendChild(formGroupElement);
+
+    removeButtonElement.addEventListener("click", function () {
+        formGroupElement.remove();
+    });
+    coordinatesXCounter++;
+});
+
+
+
+
 </script>
 
 </html>

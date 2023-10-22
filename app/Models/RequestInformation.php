@@ -30,8 +30,9 @@ class RequestInformation extends Model
         'plot_number',
         'area_size',
         'ImageUrl',
-        // 'target_information',
-        // 'Function_information',
+        'Reason',
+        'infomation_Check',
+        'requestinfomation_function',
         'coordinates'
     ];
 

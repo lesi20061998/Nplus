@@ -9,9 +9,7 @@
       <div class="row justify-content-center">
          <div class=" col-md-12 col-md-12 col-lg-6 col-xl-7 box-contact">
             <div class="contact-title">
-               <p>Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque
-                  penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh
-                  ultricies vehicula.</p>
+               <p>Công ty Nplus là một đơn vị hàng đầu trong lĩnh vực Thông Tin Quy Hoạch Đô Thị, Tư Vấn Quy Hoạch, và Thiết Kế Kiến Trúc. Chúng tôi tự hào cung cấp dịch vụ chất lượng cao, giúp khách hàng hiểu rõ về quy hoạch đô thị và thực hiện các dự án xây dựng một cách hiệu quả. Đội ngũ chuyên gia của chúng tôi sẵn sàng tư vấn và thiết kế kiến trúc sáng tạo, đảm bảo rằng mọi yếu tố quy hoạch và thiết kế đáp ứng tối đa nhu cầu của bạn</p>
 
             </div>
             <div class="contact-button"><button type="button" class="btn btn-outline-light">LIÊN HỆ
@@ -38,7 +36,7 @@
          <span class="sr-only">Previous</span>
       </a>
       <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
-         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>THÔNG TIN QUY HOẠCH ĐÔ THI
          <span class="sr-only">Next</span>
       </a>
    </div>
@@ -121,7 +119,7 @@
 
       <div class="row mb-4">
          <div class=" col-xs-12 col-md-8 col-lg-8 col-xl-8 ">
-            <a href="{{route('client-service')}}">
+            <a href="{{route('return-payment')}}">
                <figure>
                   <img src="/asset/images/service-4.png" class="img-fluid fixed-image" alt="" srcset="">
                   <figcaption>
@@ -132,7 +130,7 @@
 
          </div>
          <div class="col-xs-12 col-md-4 col-lg-4 col-xl-4">
-            <a href="{{route('client-service')}}">
+            <a href="{{route('return-payment')}}">
                <figure>
                   <img src="/asset/images/service-2.png" class="img-fluid fixed-image"" alt="" srcset="">
                            </figure>
@@ -145,7 +143,7 @@
          </div>
          <div class=" row">
                   <div class="col-xs-12 col-md-4 col-lg-4 col-xl-4 ">
-                     <a href="{{route('client-service')}}">
+                     <a href="{{route('return-payment')}}">
                         <figure>
                            <img src="/asset/images/service-1.png" class="img-fluid fixed-image" alt="" srcset="">
                         </figure>
@@ -155,7 +153,7 @@
                      </a>
                   </div>
                   <div class="col-xs-12 col-md-8 col-lg-4 col-xl-8">
-                     <a href="{{route('client-service')}}">
+                     <a href="{{route('return-payment')}}">
                         <figure>
                            <img src="/asset/images/service-3.png" class="img-fluid fixed-image"" alt="" srcset="">
                            </figure>

@@ -12,7 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "maatwebsite/excel": "^1.1",
-        "phpoffice/phpword": "dev-master",
+        "phpoffice/phpword": "^1.1",
         "tcg/voyager": "^1.6"
     },
     "require-dev": {

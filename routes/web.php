@@ -3,6 +3,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\vnpayController;
+use App\Http\Controllers\CoordinateController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,8 @@ Route::get('/vnpay-return', function(){
     return view('client.servicePayment');
 })->name('return-payment');
 
+Route::get('/paymentReturn',  [vnpayController::class, 'showPaymentReturn'])->name('showPaymentReturn');
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::get('/adminpayment', [PaymentController::class, 'index'])->name('request_informations.index');
@@ -32,3 +36,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/export/{id}', [vnpayController::class, 'export'])->name('request_informations.export');
 
 });
+
+
+// routes/web.php
+Route::get('/create-coordinates', [CoordinateController::class,'createCoordinates']);
+Route::post('/save-coordinates',  [CoordinateController::class,'saveCoordinates']);
