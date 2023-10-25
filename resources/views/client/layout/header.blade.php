@@ -1,7 +1,7 @@
 <!-- Header Section -->
 <header class="header" id="header">
     <nav class="navbar container">
-       <a href="/" class="brand"> <img src="/asset/images/logo.png" alt="" srcset=""></a>
+       <a href="/" class="brand"> <img src=" {{ asset('storage').'/'.setting('site.logo') }} "  alt="" srcset=""></a>
        <div class="menu" id="menu">
           <ul class="menu-inner">
              <li class="menu-item"><a href="#" class="menu-link">Home</a></li>

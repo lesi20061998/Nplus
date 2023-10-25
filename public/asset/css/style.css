@@ -519,7 +519,8 @@ footer {
 
 
 .box-contact>.contact-title {
-    width: 380px;
+    width: auto;
+    text-align: center;
 }
 .home-material{
     background:#131313 ;

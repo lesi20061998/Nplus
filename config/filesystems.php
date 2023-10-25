@@ -29,13 +29,18 @@ return [
     */
 
     'disks' => [
-
+        'public' => [
+            'driver' => 'local',
+            'root' => public_path(),
+            'url' => env('APP_URL').'/assets/images',
+            'visibility' => 'public',
+        ],
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
             'throw' => false,
         ],
-
+ 
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

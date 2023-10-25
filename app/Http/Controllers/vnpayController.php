@@ -3,24 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Symfony\Component\Routing\Router;
 use App\Models\RequestInformation;
 use App\Models\Payment;
-use Illuminate\Support\Facades\DB;
-use GuzzleHttp\Client;
-use Illuminate\Support\Env;
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\IOFactory;
+
 use PhpOffice\PhpWord\TemplateProcessor;
-use Illuminate\Support\Facades\Storage;
-use PhpOffice\PhpWord\Shared\Converter;
-use PhpOffice\PhpWord\Style\TablePosition;
-use PhpOffice\PhpWord\SimpleType\TblWidth;
-use PhpOffice\PhpWord\Style\Cell;
-use PhpOffice\PhpWord\Style\Table;
-use Illuminate\Support\Facades\Word;
-use PhpOffice\PhpWord\Shared\Drawing\Image;
+
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SampleEmail;
+use Illuminate\Routing\Router;
 
 class vnpayController extends Controller
 {
@@ -82,6 +73,7 @@ class vnpayController extends Controller
     public function store(Request $request)
     {
 
+
         // Lấy giá trị của checkbox
         $infomation_Check = $request->get('infomation_Check');
 
@@ -118,10 +110,10 @@ class vnpayController extends Controller
             'Reason' => 'required',
             'coordinatesX.*' => 'required',
             'coordinatesY.*' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
 
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
-        // dd($validated);
+
 
         $coordinates = [];
 
@@ -137,7 +129,6 @@ class vnpayController extends Controller
             mkdir($path, 0777, true);
         $imageName = time() . '.' . $request->image->extension();
         $request->image->move($path, $imageName);
-
         $requestInformationModel = new RequestInformation();
         $requestInformationModel->organization_or_individual_name = $validated['contact_person'];
         $requestInformationModel->contact_person = $validated['contact_person'];
@@ -159,13 +150,9 @@ class vnpayController extends Controller
         $requestInformationModel->plot_number = $validated['plot_number'];
         $requestInformationModel->sheet_number = $validated['sheet_number'];
         $requestInformationModel->area_size = $validated['area_size'];
-
-
         $requestInformationModel->Reason = $validated['Reason'];
         $requestInformationModel->infomation_Check = $infomation_Check;
         $requestInformationModel->requestinfomation_function = $validated['requestinfomation_function'];
-
-
         $requestInformationModel->ImageUrl = $imageName;
         $requestInformationModel->coordinates = $coordinatesjson;
         $requestInformationModel->save();
@@ -185,25 +172,42 @@ class vnpayController extends Controller
 
         if (isset($_POST['bankCode']) == "Interbanking") {
             $payment->save();
-          
-            // Lưu requestInformationModel và payment vào session để sử dụng sau này
+
+
+              // Truyền dữ liệu (nếu cần)
+              $data = [
+                'access_code' => $payment->access_code,
+                'order_status' => $payment->order_status,
+                'payment_method' =>$payment->payment_method,
+                'organization_or_individual_name'=>$requestInformationModel->organization_or_individual_name,
+                'contact_person'=>$requestInformationModel->contact_person,
+                'fromEmail'=>$requestInformationModel->email,
+                'fromName'=>$requestInformationModel->organization_or_individual_name,
+            ];
+            Mail::to($requestInformationModel->email)->send(new SampleEmail($data));
+            session(['emailSent' => true]);
             session(['payment' => $payment]);
             session(['requestInformationModel' => $requestInformationModel]);
-           // Redirect người dùng đến trang khác để tránh làm mới trang
+         
+            
             return redirect()->route('showPaymentReturn');
-       
+
+          
+    
         }
     }
+
+
     public function showPaymentReturn()
     {
         // Lấy payment và requestInformationModel từ session
         $payment = session('payment');
         $requestInformationModel = session('requestInformationModel');
 
-        if (!$payment || !$requestInformationModel) {
-            // Xử lý trường hợp không tìm thấy payment hoặc requestInformationModel
-            return redirect()->route('home'); // Hoặc điều hướng đến trang khác nếu cần
-        }
+        // if (!$payment || !$requestInformationModel) {
+        //     // Xử lý trường hợp không tìm thấy payment hoặc requestInformationModel
+        //     return redirect()->route('home'); // Hoặc điều hướng đến trang khác nếu cần
+        // }
 
         return view('client.paymentReturn')
             ->with('payment', $payment)
@@ -294,11 +298,11 @@ class vnpayController extends Controller
         $requestInformationModel->coordinates = $coordinatesjson;
         $requestInformationModel->save();
 
+
+
+
         return redirect()->route('request_informations.index')->with('update', 'Payment has been update.');
     }
-
-
-
 
     public function destroy($id)
     {

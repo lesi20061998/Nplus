@@ -166,21 +166,43 @@
 
 
     };
+
+
+    
+    
+
+
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
 
 <script>
 
 
+
+
+// Khởi tạo biến toàn cục
 let coordinatesXCounter = 1;
 let coordinatesYCounter = 1;
-
-
-let addCoordinatesButton = document.querySelector("#add-coordinates");
 let coordinatesElement = document.querySelector("#coordinates");
+let addCoordinatesButton = document.querySelector("#add-coordinates");
+let coordinatesData = [];
+
+// Lấy dữ liệu đã lưu trong Local Storage (nếu có)
+if (localStorage.getItem("coordinatesData")) {
+    coordinatesData = JSON.parse(localStorage.getItem("coordinatesData"));
+    coordinatesData.forEach((data, index) => {
+        createCoordinatesInput(data.x, data.y, index);
+    });
+}
 
 addCoordinatesButton.addEventListener("click", function () {
-    // Create HTML elements for coordinates
+    createCoordinatesInput("", "", coordinatesData.length);
+    coordinatesData.push({ x: "", y: "" });
+    localStorage.setItem("coordinatesData", JSON.stringify(coordinatesData));
+    coordinatesXCounter++;
+});
+
+function createCoordinatesInput(xValue, yValue, index) {
     const formGroupElement = document.createElement("div");
     formGroupElement.setAttribute("class", "form-group");
 
@@ -191,34 +213,37 @@ addCoordinatesButton.addEventListener("click", function () {
     colXElement.setAttribute("class", "col-xs-12 col-md-12 col-lg-6 col-xl-6 pt-3 p-3");
 
     const labelXElement = document.createElement("label");
-    labelXElement.setAttribute("for", "coordinatesX");
+    labelXElement.setAttribute("for", `coordinatesX${index}`);
     labelXElement.setAttribute("class", "mb-2");
-    labelXElement.innerText = `Vị trí Tọa độ X`+coordinatesXCounter;
+    labelXElement.innerText = `Vị trí Tọa độ X${coordinatesXCounter}`;
 
     const inputXElement = document.createElement("input");
     inputXElement.setAttribute("type", "text");
     inputXElement.setAttribute("class", "form-control");
     inputXElement.setAttribute("name", `coordinatesX[]`);
+    inputXElement.setAttribute("id", `coordinatesX${index}`);
+    inputXElement.value = xValue;
 
     const colYElement = document.createElement("div");
     colYElement.setAttribute("class", "col-xs-12 col-md-12 col-lg-6 col-xl-6 pt-3 p-3");
 
     const labelYElement = document.createElement("label");
-    labelYElement.setAttribute("for", "coordinatesY");
+    labelYElement.setAttribute("for", `coordinatesY${index}`);
     labelYElement.setAttribute("class", "mb-2");
-    labelYElement.innerText = `Vị trí Tọa độ Y`+coordinatesXCounter;
+    labelYElement.innerText = `Vị trí Tọa độ Y${coordinatesXCounter}`;
 
     const inputYElement = document.createElement("input");
     inputYElement.setAttribute("type", "text");
     inputYElement.setAttribute("class", "form-control");
     inputYElement.setAttribute("name", `coordinatesY[]`);
+    inputYElement.setAttribute("id", `coordinatesY${index}`);
+    inputYElement.value = yValue;
 
     const removeButtonElement = document.createElement("button");
     removeButtonElement.setAttribute("type", "button");
     removeButtonElement.setAttribute("class", "btn btn-danger mt-3");
     removeButtonElement.innerText = "Xóa";
 
-    // Add elements to the form
     colXElement.appendChild(labelXElement);
     colXElement.appendChild(inputXElement);
     colYElement.appendChild(labelYElement);
@@ -227,17 +252,24 @@ addCoordinatesButton.addEventListener("click", function () {
     rowElement.appendChild(colXElement);
     rowElement.appendChild(colYElement);
     formGroupElement.appendChild(rowElement);
-
-    // Add form group to the form
     coordinatesElement.appendChild(formGroupElement);
 
     removeButtonElement.addEventListener("click", function () {
+        coordinatesData.splice(index, 1);
+        localStorage.setItem("coordinatesData", JSON.stringify(coordinatesData));
         formGroupElement.remove();
     });
-    coordinatesXCounter++;
-});
 
+    inputXElement.addEventListener("input", function () {
+        coordinatesData[index].x = inputXElement.value;
+        localStorage.setItem("coordinatesData", JSON.stringify(coordinatesData));
+    });
 
+    inputYElement.addEventListener("input", function () {
+        coordinatesData[index].y = inputYElement.value;
+        localStorage.setItem("coordinatesData", JSON.stringify(coordinatesData));
+    });
+}
 
 
 </script>

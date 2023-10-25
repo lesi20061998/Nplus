@@ -46,9 +46,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                         
                                             @foreach ($payments as $requestInformation)
-
                                             <tr>
                                                 <td>{{$requestInformation->access_code}}</td>
                                                 <td>{{ $requestInformation->user->name }}</td>
@@ -319,7 +318,7 @@
                                                                             <?php $arr = json_decode($requestInformation->requestInformation->coordinates);
                                                                             $countY = 1;
                                                                             $countX = 1;
-                                                                           
+
                                                                             ?>
                                                                             @foreach ($arr as $item)
                                                                             <div class="col-12 p-3">
@@ -349,30 +348,49 @@
                                                                             @endforeach
                                                                         </div>
                                                                         <div class="col-12 p-3">
-                                                                                <label for="sheet_number" style="font-weight:bold; font-size:15px; color:red" class="mb-2">
-                                                                                     <?php
-                                                                                           $infomation_Check =   $requestInformation->requestInformation->infomation_Check;
-                                                                                           if($infomation_Check == 0) {
-                                                                                                echo("khách hàng không yêu cầu  bên công ty ký thay");
-                                                                                            }else{
-                                                                                                echo("khách hàng Ủy quyền ký");
-                                                                                            }
-                                                                                               
-                                                                                        ?>
-                                                                                </label>
-                                                                                    
+                                                                            <label for="sheet_number" style="font-weight:bold; font-size:15px; color:red" class="mb-2">
+                                                                                <?php
+                                                                                $infomation_Check =   $requestInformation->requestInformation->infomation_Check;
+                                                                                if ($infomation_Check == 0) {
+                                                                                    echo ("khách hàng không yêu cầu  bên công ty ký thay");
+                                                                                } else {
+                                                                                    echo ("khách hàng Ủy quyền ký");
+                                                                                }
+                                                                              
+                                                                                ?>
+                                                                            </label>
+
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-md-12 col-lg-4 col-xl-6 pt-3">
+                                                                                <label for="area_size" class="mb-2">Mục đích của việc yêu cung cấp thông tin quy hoạch đô thị*<a href=""></a>:</label>
+                                                                                <input type="text" id="ward2" class="form-control" style="width:150px" name="ward2" >
+                                                                                <input type="text" id="Reason" class="form-control" name="Reason" value="{{ old('Reason') }}">
+                                                                                @error('area_size')
+                                                                                <small style="color:red">Mục đích của việc yêu cung cấp thông tin quy hoạch đô thị* chưa nhập hoặc có thể nhập sai</small>
+                                                                                @enderror
                                                                             </div>
+                                                                            <div class="col-xs-12 col-md-12 col-lg-4 col-xl-6 pt-3">
+                                                                                <label for="requestinfomation_function" class="mb-2">Chức năng dự án đầu tư (hoặc công trình) dự kiến*:<a href=""></a>:</label>
+                                                                                <input type="text" id="requestinfomation_function" class="form-control" name="requestinfomation_function" value="{{ old('requestinfomation_function') }}">
+                                                                                @error('area_size')
+                                                                                <small style="color:red">Chức năng dự án đầu tư (hoặc công trình) dự kiến* chưa nhập hoặc có thể nhập sai</small>
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
                                                                         <div class="row">
                                                                             <div class="col-12 p-3">
                                                                                 <label for="image" class="mb-2">Đính kèm hình ảnh chụp</label>
                                                                                 <img src="{{ asset('asset/images/') }}/{{$requestInformation->requestInformation->ImageUrl}}" width="200px" height="200px">
 
-                                                                                
-                                                                              
-                                                                               
+
+
+
                                                                             </div>
 
                                                                         </div>
+
+                                                                        
                                                                         <div class="modal-footer">
 
                                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
